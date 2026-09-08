@@ -423,6 +423,13 @@
   }
   #loginForm input:focus{outline:none; border-color:var(--blue);}
   #loginForm input.invalid{border-color:var(--danger);}
+  .login-forgot{
+    margin:0; text-align:center;
+    font-family:var(--font-mono); font-size:var(--fs-mono);
+    letter-spacing:0.04em; color:var(--grey-dim);
+  }
+  .login-forgot a{color:var(--blue-light); text-decoration:underline;}
+  .login-forgot a:hover{color:var(--blue);}
   #loginForm button{
     margin-top:0.4rem;
     background:var(--blue); color:var(--black);
@@ -454,6 +461,7 @@
       </label>
       <button type="submit">Entrar</button>
       <p class="login-error" id="loginError" role="alert"></p>
+      <p class="login-forgot">Esqueceu a senha? <a href="mailto:bhaitamarketing@gmail.com">Recuperar por e-mail</a></p>
     </form>
   </div>
 </div>
