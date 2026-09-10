@@ -282,6 +282,47 @@
   .service-card h3{font-family:var(--font-body); font-weight:800; font-size:1.02rem; text-transform:none; letter-spacing:0; margin-bottom:0.5rem;}
   .service-card p{color:var(--grey); font-size:0.92rem; margin:0;}
 
+  /* ---------- Portfolio ---------- */
+  .portfolio-filters{display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:2.25rem;}
+  .pf-btn{
+    font-family:var(--font-mono); font-size:var(--fs-mono); letter-spacing:0.1em; text-transform:uppercase;
+    background:transparent; border:1px solid var(--navy-dim); color:var(--grey);
+    padding:0.6rem 1.1rem; cursor:pointer; transition:border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  }
+  .pf-btn:hover{border-color:var(--blue); color:var(--blue-light);}
+  .pf-btn.is-active{border-color:var(--blue); color:var(--blue-light); background:var(--navy-dim);}
+
+  .portfolio-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:0.6rem;}
+  @media (max-width:900px){.portfolio-grid{grid-template-columns:repeat(3,1fr);}}
+  @media (max-width:560px){.portfolio-grid{grid-template-columns:repeat(2,1fr);}}
+
+  .pf-item{
+    position:relative; padding:0; margin:0; border:1px solid transparent;
+    background:var(--surface); aspect-ratio:1/1; overflow:hidden; cursor:pointer;
+    display:block; width:100%;
+  }
+  .pf-item[hidden]{display:none;}
+  .pf-item img{width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;}
+  .pf-item:hover img{transform:scale(1.06);}
+  .pf-item:hover{border-color:var(--blue);}
+
+  .lightbox{
+    position:fixed; inset:0; z-index:80;
+    background:rgba(7,9,11,0.94);
+    display:flex; align-items:center; justify-content:center;
+    padding:clamp(1rem, 5vw, 3rem);
+  }
+  .lightbox[hidden]{display:none;}
+  .lightbox img{max-width:100%; max-height:100%; object-fit:contain;}
+  .lb-close, .lb-prev, .lb-next{
+    position:absolute; background:var(--surface); border:1px solid var(--navy-dim); color:var(--white);
+    cursor:pointer; font-size:1.4rem; line-height:1; padding:0.5rem 0.9rem; font-family:var(--font-mono);
+  }
+  .lb-close{top:1.1rem; right:1.1rem;}
+  .lb-prev{left:1.1rem; top:50%; transform:translateY(-50%);}
+  .lb-next{right:1.1rem; top:50%; transform:translateY(-50%);}
+  .lb-close:hover, .lb-prev:hover, .lb-next:hover{border-color:var(--blue); color:var(--blue-light);}
+
   /* ---------- Sobre / specs ---------- */
   .about{display:grid; grid-template-columns:0.9fr 1.1fr; gap:3.5rem; align-items:start;}
   @media (max-width:860px){.about{grid-template-columns:1fr;}}
@@ -476,6 +517,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#inicio">Início</a></li>
       <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#portfolio">Portfólio</a></li>
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#orcamento">Orçamento</a></li>
       <li><a href="#contato">Contato</a></li>
@@ -582,6 +624,121 @@
     </div>
   </section>
 
+  <section id="portfolio" class="hairline">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Nosso trabalho</p>
+        <h2>Portfólio</h2>
+        <p>Uma seleção de eventos que já cobrimos, organizados por tipo. Toque numa foto pra ampliar.</p>
+      </div>
+      <div class="portfolio-filters" role="tablist">
+      <button type="button" class="pf-btn is-active" data-filter="all">Todos</button>
+      <button type="button" class="pf-btn" data-filter="15-anos">15 Anos</button>
+      <button type="button" class="pf-btn" data-filter="casamento">Casamento</button>
+      <button type="button" class="pf-btn" data-filter="formatura">Formatura</button>
+      <button type="button" class="pf-btn" data-filter="religioso">Religioso</button>
+      </div>
+      <div class="portfolio-grid" id="portfolioGrid">
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-01.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-01-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-02.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-02-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-03.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-03-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-04.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-04-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-05.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-05-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-06.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-06-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-07.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-07-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-08.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-08-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-09.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-09-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-10.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-10-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-11.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-11-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-12.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-12-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="15-anos" data-full="assets/portfolio/15-anos/15-anos-13.jpg">
+          <img src="assets/portfolio/15-anos/15-anos-13-thumb.jpg" alt="15 Anos" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="casamento" data-full="assets/portfolio/casamento/casamento-01.jpg">
+          <img src="assets/portfolio/casamento/casamento-01-thumb.jpg" alt="Casamento" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="casamento" data-full="assets/portfolio/casamento/casamento-02.jpg">
+          <img src="assets/portfolio/casamento/casamento-02-thumb.jpg" alt="Casamento" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="casamento" data-full="assets/portfolio/casamento/casamento-03.jpg">
+          <img src="assets/portfolio/casamento/casamento-03-thumb.jpg" alt="Casamento" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="casamento" data-full="assets/portfolio/casamento/casamento-04.jpg">
+          <img src="assets/portfolio/casamento/casamento-04-thumb.jpg" alt="Casamento" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="formatura" data-full="assets/portfolio/formatura/formatura-01.jpg">
+          <img src="assets/portfolio/formatura/formatura-01-thumb.jpg" alt="Formatura" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="formatura" data-full="assets/portfolio/formatura/formatura-02.jpg">
+          <img src="assets/portfolio/formatura/formatura-02-thumb.jpg" alt="Formatura" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="formatura" data-full="assets/portfolio/formatura/formatura-03.jpg">
+          <img src="assets/portfolio/formatura/formatura-03-thumb.jpg" alt="Formatura" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="formatura" data-full="assets/portfolio/formatura/formatura-04.jpg">
+          <img src="assets/portfolio/formatura/formatura-04-thumb.jpg" alt="Formatura" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="formatura" data-full="assets/portfolio/formatura/formatura-05.jpg">
+          <img src="assets/portfolio/formatura/formatura-05-thumb.jpg" alt="Formatura" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="formatura" data-full="assets/portfolio/formatura/formatura-06.jpg">
+          <img src="assets/portfolio/formatura/formatura-06-thumb.jpg" alt="Formatura" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="formatura" data-full="assets/portfolio/formatura/formatura-07.jpg">
+          <img src="assets/portfolio/formatura/formatura-07-thumb.jpg" alt="Formatura" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="formatura" data-full="assets/portfolio/formatura/formatura-08.jpg">
+          <img src="assets/portfolio/formatura/formatura-08-thumb.jpg" alt="Formatura" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="formatura" data-full="assets/portfolio/formatura/formatura-09.jpg">
+          <img src="assets/portfolio/formatura/formatura-09-thumb.jpg" alt="Formatura" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="formatura" data-full="assets/portfolio/formatura/formatura-10.jpg">
+          <img src="assets/portfolio/formatura/formatura-10-thumb.jpg" alt="Formatura" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="religioso" data-full="assets/portfolio/religioso/religioso-01.jpg">
+          <img src="assets/portfolio/religioso/religioso-01-thumb.jpg" alt="Religioso" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="religioso" data-full="assets/portfolio/religioso/religioso-02.jpg">
+          <img src="assets/portfolio/religioso/religioso-02-thumb.jpg" alt="Religioso" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="religioso" data-full="assets/portfolio/religioso/religioso-03.jpg">
+          <img src="assets/portfolio/religioso/religioso-03-thumb.jpg" alt="Religioso" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="religioso" data-full="assets/portfolio/religioso/religioso-04.jpg">
+          <img src="assets/portfolio/religioso/religioso-04-thumb.jpg" alt="Religioso" loading="lazy">
+        </button>
+        <button type="button" class="pf-item" data-cat="religioso" data-full="assets/portfolio/religioso/religioso-05.jpg">
+          <img src="assets/portfolio/religioso/religioso-05-thumb.jpg" alt="Religioso" loading="lazy">
+        </button>
+      </div>
+    </div>
+  </section>
+
   <section id="sobre" class="hairline">
     <div class="wrap about">
       <div>
@@ -590,6 +747,10 @@
         <p style="color:var(--grey); margin-top:1.2rem; max-width:46ch;">Trabalhamos pra que a lembrança do evento não fique só na memória. Cada projeto é planejado, gravado e editado com atenção aos detalhes — do enquadramento ao corte final.</p>
       </div>
       <div class="specs">
+        <div class="spec-row">
+          <span class="tag">Desde</span>
+          <span class="val"><strong>2019</strong> registrando eventos com fotografia, filmagem e drone.</span>
+        </div>
         <div class="spec-row">
           <span class="tag">Foco</span>
           <span class="val"><strong>No seu evento.</strong> Reunião prévia pra entender roteiro, horários e momentos que não podem passar em branco.</span>
@@ -688,6 +849,7 @@
     <div>
       <h4>Navegação</h4>
       <a class="contact-link" href="#servicos" style="font-weight:500;">Serviços</a>
+      <a class="contact-link" href="#portfolio" style="font-weight:500;">Portfólio</a>
       <a class="contact-link" href="#orcamento" style="font-weight:500;">Orçamento</a>
     </div>
   </div>
@@ -844,6 +1006,79 @@
       }
     });
   });
+})();
+</script>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button type="button" class="lb-close" id="lbClose" aria-label="Fechar">&times;</button>
+  <button type="button" class="lb-prev" id="lbPrev" aria-label="Anterior">&lsaquo;</button>
+  <img id="lbImg" src="" alt="">
+  <button type="button" class="lb-next" id="lbNext" aria-label="Próxima">&rsaquo;</button>
+</div>
+
+<script>
+(function(){
+  var grid = document.getElementById('portfolioGrid');
+  if(!grid) return;
+  var items = Array.prototype.slice.call(grid.querySelectorAll('.pf-item'));
+  var filterBtns = Array.prototype.slice.call(document.querySelectorAll('.pf-btn'));
+  var visible = items.slice();
+  var current = -1;
+
+  var lightbox = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+
+  function applyFilter(filter){
+    visible = [];
+    items.forEach(function(it){
+      var match = (filter === 'all' || it.getAttribute('data-cat') === filter);
+      it.hidden = !match;
+      if(match) visible.push(it);
+    });
+  }
+
+  filterBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      filterBtns.forEach(function(b){ b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      applyFilter(btn.getAttribute('data-filter'));
+    });
+  });
+
+  function show(){
+    var it = visible[current];
+    if(!it) return;
+    lbImg.src = it.getAttribute('data-full');
+    lbImg.alt = it.querySelector('img').alt;
+    lightbox.hidden = false;
+  }
+
+  items.forEach(function(it){
+    it.addEventListener('click', function(){
+      visible = items.filter(function(x){ return !x.hidden; });
+      current = visible.indexOf(it);
+      show();
+    });
+  });
+
+  document.getElementById('lbClose').addEventListener('click', function(){ lightbox.hidden = true; });
+  document.getElementById('lbPrev').addEventListener('click', function(){
+    if(!visible.length) return;
+    current = (current - 1 + visible.length) % visible.length; show();
+  });
+  document.getElementById('lbNext').addEventListener('click', function(){
+    if(!visible.length) return;
+    current = (current + 1) % visible.length; show();
+  });
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox) lightbox.hidden = true; });
+  document.addEventListener('keydown', function(e){
+    if(lightbox.hidden) return;
+    if(e.key === 'Escape') lightbox.hidden = true;
+    if(e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+    if(e.key === 'ArrowRight') document.getElementById('lbNext').click();
+  });
+
+  applyFilter('all');
 })();
 </script>
 
